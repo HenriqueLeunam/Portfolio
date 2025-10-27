@@ -1,0 +1,50 @@
+name: Deploy Portifolio   # Nome do pipeline (aparece no GitHub Actions)
+
+on:
+  push:                       # Evento que dispara o pipeline
+    branches:
+      - main                  # Toda vez que você fizer push na branch main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest    # O pipeline rodará num ambiente Linux do GitHub
+
+    steps:
+      # 1️⃣ Etapa: Clonar o repositório
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # "uses" indica que estamos usando uma Action pronta do marketplace do GitHub
+        # Essa Action baixa o código do seu repositório no ambiente de execução
+
+      # 2️⃣ Etapa: Publicar no GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Token de autenticação gerado automaticamente pelo GitHub
+          publish_dir: .      # Diretório que contém os arquivos do site (raiz)
+name: Deploy Static Website   # Nome do pipeline (aparece no GitHub Actions)
+
+on:
+  push:                       # Evento que dispara o pipeline
+    branches:
+      - main                  # Toda vez que você fizer push na branch main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest    # O pipeline rodará num ambiente Linux do GitHub
+
+    steps:
+      # 1️⃣ Etapa: Clonar o repositório
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # "uses" indica que estamos usando uma Action pronta do marketplace do GitHub
+        # Essa Action baixa o código do seu repositório no ambiente de execução
+
+      # 2️⃣ Etapa: Publicar no GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Token de autenticação gerado automaticamente pelo GitHub
+          publish_dir: .      # Diretório que contém os arquivos do site (raiz)
